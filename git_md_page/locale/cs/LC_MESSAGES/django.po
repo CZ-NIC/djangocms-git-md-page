@@ -1,0 +1,41 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-26 17:41+0200\n"
+"PO-Revision-Date: 2021-01-26 17:4120200\n"
+"Last-Translator: Daniel HUBACEK <daniel.hubacek@nic.cz>\n"
+"Language-Team: Daniel HUBACEK <daniel.hubacek@nic.cz>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
+"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+msgid "Full path to the file in the repository."
+msgstr "Celá cesta k suoboru v repozitáři."
+
+msgid "Git MD page"
+msgstr "Git MD stránka"
+
+msgid "Git repositories"
+msgstr "Gitovské repozitáře"
+
+msgid "Others"
+msgstr "Ostatní"
+
+msgid "Secret for webhook"
+msgstr "Secret pro webhook"
+
+msgid "Source branch"
+msgstr "Cílová větev"
+
+msgid "Source branch is usually either master or main."
+msgstr "Cílová větev je obvykle buď master nebo main."
+
+msgid "URL for the repository"
+msgstr "URL repozitáře"
+
+msgid "https://github.com/owner-name/repository-name.git"
+msgstr "https://github.com/jmeno-vlastnika/jmeno-repozitar.git"
