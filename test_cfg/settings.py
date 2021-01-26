@@ -41,3 +41,5 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 ]
+
+ROOT_URLCONF = 'git_md_page.urls'
