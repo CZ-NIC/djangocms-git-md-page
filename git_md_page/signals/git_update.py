@@ -14,17 +14,14 @@ repo_update = Signal(providing_args=["url", "instance"])
 
 
 class UpdateSignalError(Exception):
-    """Exception from updating of the repositry."""
+    """Exception from updating of the repository."""
 
 
 @receiver(repo_update, sender=GitTextPluginModel)
 def repository_update(sender, **kwargs):
     """Perform a repository update and parse all registered files."""
     # Handle the url
-    if "instance" in kwargs:
-        url = kwargs["instance"].repository.URL
-    else:
-        url = kwargs["url"]
+    url = kwargs["instance"].repository.URL if "instance" in kwargs else kwargs["url"]
 
     # Get the repository
     try:
