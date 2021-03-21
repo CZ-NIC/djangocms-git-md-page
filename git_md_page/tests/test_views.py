@@ -46,7 +46,7 @@ class GitUpdateEndpointTest(TestCase):
         request = RequestFactory().post("/", data=body, content_type="application/json")
         request.META["HTTP_X_HUB_SIGNATURE"] = sig
         response = git_update_endpoint(request, self.repository.pk)
-        self.assertContains(response, "")
+        self.assertContains(response, "", status_code=200)
         self.assertEqual(repo_update_mock.mock_calls, [])
 
     @patch("git_md_page.views.repo_update")
