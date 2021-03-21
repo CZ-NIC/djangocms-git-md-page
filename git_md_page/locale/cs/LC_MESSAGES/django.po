@@ -14,7 +14,7 @@ msgstr ""
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "Full path to the file in the repository."
-msgstr "Celá cesta k suoboru v repozitáři."
+msgstr "Celá cesta k souboru v repozitáři."
 
 msgid "Git MD page"
 msgstr "Git MD stránka"
@@ -32,7 +32,7 @@ msgid "Source branch"
 msgstr "Cílová větev"
 
 msgid "Source branch is usually either master or main."
-msgstr "Cílová větev je obvykle buď master nebo main."
+msgstr "Cílová větev je obvykle buď master, nebo main."
 
 msgid "URL for the repository"
 msgstr "URL repozitáře"
