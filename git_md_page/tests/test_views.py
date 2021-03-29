@@ -46,7 +46,7 @@ class GitUpdateEndpointTest(TestCase):
         request = RequestFactory().post("/", data=body, content_type="application/json")
         request.META["HTTP_X_HUB_SIGNATURE"] = sig
         response = git_update_endpoint(request, self.repository.pk)
-        self.assertContains(response, "", status_code=200)
+        self.assertContains(response, "Branch ignored", status_code=200)
         self.assertEqual(repo_update_mock.mock_calls, [])
 
     @patch("git_md_page.views.repo_update")
@@ -56,7 +56,7 @@ class GitUpdateEndpointTest(TestCase):
         request = RequestFactory().post("/", data=body, content_type="application/json")
         request.META["HTTP_X_HUB_SIGNATURE"] = sig
         response = git_update_endpoint(request, self.repository.pk)
-        self.assertContains(response, "Happy")
+        self.assertContains(response, "Success")
         self.assertTrue(
             repo_update_mock.mock_calls,
             [call(sender=GitTextPluginModel, url=self.repository.URL)],
