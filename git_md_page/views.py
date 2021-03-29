@@ -32,7 +32,7 @@ def git_update_endpoint(request, pk):
     # Now parse the body for event and check whether or not is the commit on master
     parsed = json.loads(request.body.decode())
     if parsed.get("ref") != "refs/heads/{}".format(repo.branch):
-        return HttpResponse()
+        return HttpResponse("Branch ignored")
 
     repo_update.send(sender=GitTextPluginModel, url=repo.URL)
-    return HttpResponse("Happy")
+    return HttpResponse("Success")
