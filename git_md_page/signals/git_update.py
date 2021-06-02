@@ -42,8 +42,11 @@ def repository_update(sender, **kwargs):
         raise UpdateSignalError(error)
     else:
         for file in files:
-            with open(os.path.join(temp_folder, file.file)) as repo_file:
-                file.content = markdown(repo_file.read())
+            try:
+                with open(os.path.join(temp_folder, file.file)) as repo_file:
+                    file.content = markdown(repo_file.read(), extensions=['fenced_code'])
+            except FileNotFoundError:
+                file.content = 'File not found!'
             file.save(signal_sent=True)
     finally:
         rmtree(temp_folder)

@@ -94,3 +94,25 @@ class RepositoryUpdateTest(TestCase):
         )
         content = "<h1>test</h1>" "<h2>list</h2>" "<ul>" "<li>item</li>" "<li>second item</li>" "</ul>"
         self.assertHTMLEqual(GitTextPluginModel.objects.get(file="test.md").content, content)
+
+    @patch("git_md_page.signals.git_update.open", side_effect=FileNotFoundError("File not found in the repository."))
+    @patch("git_md_page.signals.git_update.Repo")
+    def test_file_not_found(self, repo_mock, open_mock):
+        instance = GitTextPluginModel.objects.create(file="test.md", repository=self.repository)
+        repository_update(sentinel.sender, url="https://example.com/test")
+
+        instance.refresh_from_db()
+        self.assertEqual(instance.content, "File not found!")
+
+    @patch("git_md_page.signals.git_update.mkdtemp")
+    @patch("git_md_page.signals.git_update.Repo")
+    def test_fenced_code_extension(self, repo_mock, mkdtemp_mock):
+        instance = GitTextPluginModel.objects.create(file="test.md", repository=self.repository)
+        temp_folder = mkdtemp()
+        with open(os.path.join(temp_folder, "test.md"), "w") as git_file:
+            git_file.write("```\n<html>\n</html>\n```")
+        mkdtemp_mock.return_value = temp_folder
+        repository_update(sentinel.sender, url="https://example.com/test")
+
+        instance.refresh_from_db()
+        self.assertEqual(instance.content, '<pre><code>&lt;html&gt;\n&lt;/html&gt;\n</code></pre>')
