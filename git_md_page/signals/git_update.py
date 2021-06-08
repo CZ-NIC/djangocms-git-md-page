@@ -37,9 +37,9 @@ def repository_update(sender, **kwargs):
     # Do the update, update content
     temp_folder = mkdtemp()
     try:
-        Repo.clone_from(repository.URL, temp_folder, depth=1)
-    except CommandError as error:
-        raise UpdateSignalError(error)
+        Repo.clone_from(repository.URL, temp_folder, env={'GIT_TERMINAL_PROMPT': '0'}, depth=1)
+    except CommandError:
+        files.update(content='Repository could not be cloned!')
     else:
         for file in files:
             try:
