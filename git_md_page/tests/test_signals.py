@@ -46,7 +46,15 @@ class RepositoryUpdateTest(TestCase):
         repository_update(sentinel.sender, instance=instance)
         self.assertEqual(
             repo_mock.mock_calls,
-            [call.clone_from("https://example.com/test", temp_folder, env={'GIT_TERMINAL_PROMPT': '0'}, depth=1)],
+            [
+                call.clone_from(
+                    "https://example.com/test",
+                    temp_folder,
+                    env={"GIT_TERMINAL_PROMPT": "0"},
+                    multi_options=["--single-branch", "--branch master"],
+                    depth=1,
+                )
+            ],
         )
         self.assertHTMLEqual(GitTextPluginModel.objects.get(file="test.md").content, "<p>test</p>")
 
@@ -62,9 +70,17 @@ class RepositoryUpdateTest(TestCase):
 
         self.assertEqual(
             repo_mock.mock_calls,
-            [call.clone_from("https://example.com/test", temp_folder, env={'GIT_TERMINAL_PROMPT': '0'}, depth=1)],
+            [
+                call.clone_from(
+                    "https://example.com/test",
+                    temp_folder,
+                    env={"GIT_TERMINAL_PROMPT": "0"},
+                    multi_options=["--single-branch", "--branch master"],
+                    depth=1,
+                )
+            ],
         )
-        self.assertEqual(instance.content, 'Repository could not be cloned!')
+        self.assertEqual(instance.content, "Repository could not be cloned!")
 
     @patch("git_md_page.signals.git_update.mkdtemp")
     @patch("git_md_page.signals.git_update.Repo")
@@ -77,7 +93,15 @@ class RepositoryUpdateTest(TestCase):
         repository_update(sentinel.sender, url="https://example.com/test")
         self.assertEqual(
             repo_mock.mock_calls,
-            [call.clone_from("https://example.com/test", temp_folder, env={'GIT_TERMINAL_PROMPT': '0'}, depth=1)],
+            [
+                call.clone_from(
+                    "https://example.com/test",
+                    temp_folder,
+                    env={"GIT_TERMINAL_PROMPT": "0"},
+                    multi_options=["--single-branch", "--branch master"],
+                    depth=1,
+                )
+            ],
         )
         self.assertHTMLEqual(GitTextPluginModel.objects.get(file="test.md").content, "<p>test</p>")
 
@@ -92,7 +116,15 @@ class RepositoryUpdateTest(TestCase):
         repository_update(sentinel.sender, url="https://example.com/test")
         self.assertEqual(
             repo_mock.mock_calls,
-            [call.clone_from("https://example.com/test", temp_folder, env={'GIT_TERMINAL_PROMPT': '0'}, depth=1)],
+            [
+                call.clone_from(
+                    "https://example.com/test",
+                    temp_folder,
+                    env={"GIT_TERMINAL_PROMPT": "0"},
+                    multi_options=["--single-branch", "--branch master"],
+                    depth=1,
+                )
+            ],
         )
         content = "<h1>test</h1>" "<h2>list</h2>" "<ul>" "<li>item</li>" "<li>second item</li>" "</ul>"
         self.assertHTMLEqual(GitTextPluginModel.objects.get(file="test.md").content, content)
@@ -117,4 +149,4 @@ class RepositoryUpdateTest(TestCase):
         repository_update(sentinel.sender, url="https://example.com/test")
 
         instance.refresh_from_db()
-        self.assertEqual(instance.content, '<pre><code>&lt;html&gt;\n&lt;/html&gt;\n</code></pre>')
+        self.assertEqual(instance.content, "<pre><code>&lt;html&gt;\n&lt;/html&gt;\n</code></pre>")

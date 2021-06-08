@@ -37,16 +37,22 @@ def repository_update(sender, **kwargs):
     # Do the update, update content
     temp_folder = mkdtemp()
     try:
-        Repo.clone_from(repository.URL, temp_folder, env={'GIT_TERMINAL_PROMPT': '0'}, depth=1)
+        Repo.clone_from(
+            repository.URL,
+            temp_folder,
+            env={"GIT_TERMINAL_PROMPT": "0"},
+            multi_options=["--single-branch", "--branch {}".format(repository.branch)],
+            depth=1,
+        )
     except CommandError:
-        files.update(content='Repository could not be cloned!')
+        files.update(content="Repository could not be cloned!")
     else:
         for file in files:
             try:
                 with open(os.path.join(temp_folder, file.file)) as repo_file:
-                    file.content = markdown(repo_file.read(), extensions=['fenced_code'])
+                    file.content = markdown(repo_file.read(), extensions=["fenced_code"])
             except FileNotFoundError:
-                file.content = 'File not found!'
+                file.content = "File not found!"
             file.save(signal_sent=True)
     finally:
         rmtree(temp_folder)
