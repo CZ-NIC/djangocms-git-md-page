@@ -6,7 +6,7 @@ from git_md_page.models import GitRepository, GitTextPluginModel
 class GitRepositoryTest(SimpleTestCase):
     def test_str(self):
         instance = GitRepository(URL="https://example.com/rep.git", secret="secret", branch="master")
-        self.assertEqual(str(instance), "Repository at https://example.com/rep.git")
+        self.assertEqual(str(instance), "Repository at https://example.com/rep.git [master]")
 
 
 class GitTextPluginModelTest(SimpleTestCase):

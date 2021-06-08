@@ -26,7 +26,7 @@ class GitRepository(models.Model):
 
     def __str__(self):
         """Understandable representation."""
-        return "Repository at {}".format(self.URL)
+        return "Repository at {} [{}]".format(self.URL, self.branch)
 
 
 class GitTextPluginModel(CMSPlugin):
