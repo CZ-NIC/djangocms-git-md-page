@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-26 17:41+0200\n"
+"POT-Creation-Date: 2021-06-10 19:09+0200\n"
 "PO-Revision-Date: 2021-01-26 17:4120200\n"
 "Last-Translator: Daniel HUBACEK <daniel.hubacek@nic.cz>\n"
 "Language-Team: Daniel HUBACEK <daniel.hubacek@nic.cz>\n"
@@ -24,6 +24,9 @@ msgstr "Gitovské repozitáře"
 
 msgid "Others"
 msgstr "Ostatní"
+
+msgid "Repository could not be cloned (error code: {})."
+msgstr "Repozitář se nepodařilo stáhnout (error č. {})."
 
 msgid "Secret for webhook"
 msgstr "Secret pro webhook"

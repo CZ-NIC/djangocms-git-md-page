@@ -7,7 +7,7 @@ from django.test import TestCase
 from git.exc import CommandError
 
 from git_md_page.models import GitRepository, GitTextPluginModel
-from git_md_page.signals.git_update import UpdateSignalError, repo_update, repository_update
+from git_md_page.signals.git_update import repo_update, repository_update
 
 
 def setUpModule():
@@ -27,13 +27,15 @@ class RepositoryUpdateTest(TestCase):
     def setUpTestData(cls):
         cls.repository = GitRepository.objects.create(URL="https://example.com/test", branch="master")
 
-    def test_no_files(self):
-        with self.assertRaisesRegex(UpdateSignalError, "No files to update"):
-            repository_update(sentinel.sender, url="https://example.com/test")
+    @patch("git_md_page.signals.git_update.mkdtemp")
+    def test_no_files(self, mkdtemp_mock):
+        repository_update(sentinel.sender, url="https://example.com/test")
+        mkdtemp_mock.assert_not_called()
 
-    def test_no_repository(self):
-        with self.assertRaisesRegex(UpdateSignalError, "No repository found"):
-            repository_update(sentinel.sender, url="https://example.com/nonexistent")
+    @patch("git_md_page.signals.git_update.mkdtemp")
+    def test_no_repository(self, mkdtemp_mock):
+        repository_update(sentinel.sender, url="https://example.com/nonexistent")
+        mkdtemp_mock.assert_not_called()
 
     @patch("git_md_page.signals.git_update.mkdtemp")
     @patch("git_md_page.signals.git_update.Repo")
@@ -63,7 +65,7 @@ class RepositoryUpdateTest(TestCase):
     def test_failed_clone(self, repo_mock, mkdtemp_mock):
         instance = GitTextPluginModel.objects.create(file="test.md", repository=self.repository)
         temp_folder = mkdtemp()
-        repo_mock.clone_from.side_effect = CommandError("test")
+        repo_mock.clone_from.side_effect = CommandError("test", status=128)
         mkdtemp_mock.return_value = temp_folder
         repository_update(sentinel.sender, url="https://example.com/test")
         instance.refresh_from_db()
@@ -80,7 +82,7 @@ class RepositoryUpdateTest(TestCase):
                 )
             ],
         )
-        self.assertEqual(instance.content, "Repository could not be cloned!")
+        self.assertEqual(instance.content, "Repository could not be cloned! (error code: 128)")
 
     @patch("git_md_page.signals.git_update.mkdtemp")
     @patch("git_md_page.signals.git_update.Repo")

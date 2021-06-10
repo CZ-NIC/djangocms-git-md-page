@@ -13,10 +13,6 @@ from git_md_page.models import GitRepository, GitTextPluginModel
 repo_update = Signal(providing_args=["url", "instance"])
 
 
-class UpdateSignalError(Exception):
-    """Exception from updating of the repository."""
-
-
 @receiver(repo_update, sender=GitTextPluginModel)
 def repository_update(sender, **kwargs):
     """Perform a repository update and parse all registered files."""
@@ -27,12 +23,12 @@ def repository_update(sender, **kwargs):
     try:
         repository = GitRepository.objects.get(URL=url)
     except GitRepository.DoesNotExist:
-        raise UpdateSignalError("No repository found")
+        return
 
     # Get the files
     files = GitTextPluginModel.objects.filter(repository=repository)
     if not files.exists():
-        raise UpdateSignalError("No files to update")
+        return
 
     # Do the update, update content
     temp_folder = mkdtemp()
@@ -44,8 +40,8 @@ def repository_update(sender, **kwargs):
             multi_options=["--single-branch", "--branch {}".format(repository.branch)],
             depth=1,
         )
-    except CommandError:
-        files.update(content="Repository could not be cloned!")
+    except CommandError as e:
+        files.update(content="Repository could not be cloned! (error code: {})".format(e.status))
     else:
         for file in files:
             try:
