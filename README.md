@@ -48,15 +48,15 @@ In the CMS administration, click the `+` symbol to add a new plugin. This plugin
 in the `Others` section.
 
 First of all, it is required to select the source repository. One can choose from the available choices or create a new
-choice, new source repository, by clicking the `+` symbol next to the select box. Every repository is defined by its
+choice (new source repository) by clicking the `+` symbol next to the select box. Every repository is defined by its
 address and branch. In the form, there are hints what value should be used. Also, there is another field called 
-`secret`. Its default value is a random string and this random value can be left. This `secret` value is then used for
+`secret`. Its default value is a random string which can be left for further usage. This `secret` value is then used for
 security purposes in the GitHub administration.
 
 When a repository is successfully selected, next fill the path to the desired MD file.
 
-Next, it is required to set up a _webhook_ in the GitHub project administration. It causes updating the content of the 
-plugin every time the content of the file in the repository is changed. In your GitHub project administration, click 
+After that, it is required to set up a _webhook_ in the GitHub project administration. It updates the content of
+the plugin every time the content of the file in the repository is changed. In your GitHub project administration, click 
 `Settings` (horizontal navigation on the top of the page), `Webhooks` (left vertical navigation), `Add webhook` (a
 button in the right top corner).
 
