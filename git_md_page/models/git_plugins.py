@@ -6,6 +6,11 @@ from django.utils.functional import lazy
 from django.utils.translation import gettext as _
 
 
+def get_default_secret() -> str:
+    """Get default secret."""
+    return get_random_string(255)
+
+
 class GitRepository(models.Model):
     """Represents a Git repository from which we can pull pages."""
 
@@ -14,7 +19,7 @@ class GitRepository(models.Model):
         help_text=_("https://github.com/owner-name/repository-name.git"),
     )
     secret = models.CharField(
-        verbose_name=_("Secret for webhook"), max_length=255, default=lazy(lambda: get_random_string(255), str)
+        verbose_name=_("Secret for webhook"), max_length=255, default=lazy(get_default_secret, str)
     )
     branch = models.CharField(
         verbose_name=_("Source branch"),

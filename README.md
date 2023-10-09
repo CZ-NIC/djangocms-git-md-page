@@ -32,7 +32,7 @@ INSTALLED_APPS = [
 # urls.py
 urlpatterns = [
     # ...
-    url(r'^git_md_page/', include('git_md_page.urls')),
+    path('git_md_page/', include('git_md_page.urls')),
 ]
 ```
 
