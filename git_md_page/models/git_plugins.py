@@ -2,6 +2,7 @@
 from cms.models import CMSPlugin
 from django.db import models
 from django.utils.crypto import get_random_string
+from django.utils.functional import lazy
 from django.utils.translation import gettext as _
 
 
@@ -12,7 +13,9 @@ class GitRepository(models.Model):
         verbose_name=_("URL for the repository"),
         help_text=_("https://github.com/owner-name/repository-name.git"),
     )
-    secret = models.CharField(verbose_name=_("Secret for webhook"), max_length=255, default=get_random_string)
+    secret = models.CharField(
+        verbose_name=_("Secret for webhook"), max_length=255, default=lazy(lambda: get_random_string(255), str)
+    )
     branch = models.CharField(
         verbose_name=_("Source branch"),
         max_length=63,

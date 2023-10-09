@@ -43,3 +43,5 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'git_md_page.urls'
+
+CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'

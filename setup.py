@@ -10,7 +10,7 @@ class CustomBuild(build):
 
 
 setup(
-    packages=find_packages(exclude=['*.tests']),
+    packages=find_packages(exclude=["*.tests"]),
     cmdclass={"build": CustomBuild},
     setup_requires=["Babel >=2.3"],
     include_package_data=True,
