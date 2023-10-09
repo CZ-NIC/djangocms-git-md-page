@@ -1,7 +1,7 @@
 """Git MD page plugin."""
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from git_md_page.forms.git_plugins import GitTextPluginForm
 from git_md_page.models import GitTextPluginModel
