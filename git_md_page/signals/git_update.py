@@ -10,7 +10,7 @@ from markdown import markdown
 
 from git_md_page.models import GitRepository, GitTextPluginModel
 
-repo_update = Signal(providing_args=["url", "instance"])
+repo_update = Signal()
 
 
 @receiver(repo_update, sender=GitTextPluginModel)
@@ -22,7 +22,7 @@ def repository_update(sender, **kwargs):
     # Get the repository
     try:
         repository = GitRepository.objects.get(URL=url)
-    except GitRepository.DoesNotExist:
+    except (GitRepository.DoesNotExist, GitRepository.MultipleObjectsReturned):
         return
 
     # Get the files
