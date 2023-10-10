@@ -45,5 +45,5 @@ msgstr "Cílová větev je obvykle buď master, nebo main."
 msgid "URL for the repository"
 msgstr "URL repozitáře"
 
-msgid "https://github.com/owner-name/repository-name.git"
-msgstr "https://github.com/jmeno-vlastnika/jmeno-repozitar.git"
+msgid "https://github.com/owner-name/repository-name.git URL must be unique to this site."
+msgstr "https://github.com/jmeno-vlastnika/jmeno-repozitar.git URL musí být jednoznačná pro tento web."

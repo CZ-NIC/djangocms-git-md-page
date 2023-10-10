@@ -22,7 +22,7 @@ def repository_update(sender, **kwargs):
     # Get the repository
     try:
         repository = GitRepository.objects.get(URL=url)
-    except (GitRepository.DoesNotExist, GitRepository.MultipleObjectsReturned):
+    except GitRepository.DoesNotExist:
         return
 
     # Get the files
