@@ -7,6 +7,8 @@ DATABASES = {
     }
 }
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 INSTALLED_APPS = (
     "django.contrib.admin",
     "django.contrib.sites",
@@ -45,3 +47,10 @@ MIDDLEWARE = [
 ROOT_URLCONF = "git_md_page.urls"
 
 CSRF_FAILURE_VIEW = "django.views.csrf.csrf_failure"
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/tmp/git_md_page_cache",
+    }
+}
