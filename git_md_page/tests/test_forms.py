@@ -1,13 +1,13 @@
 from tempfile import mkdtemp
 from unittest.mock import call, patch
 
-from django.test import SimpleTestCase
+from django.test import TestCase
 from git import CommandError
 
 from git_md_page.forms.git_plugins import GitRepositoryForm
 
 
-class GitRepositoryFormTest(SimpleTestCase):
+class GitRepositoryFormTest(TestCase):
     @patch("git_md_page.forms.git_plugins.mkdtemp")
     @patch("git_md_page.forms.git_plugins.Repo")
     def test_clean_success(self, repo_mock, mkdtemp_mock):

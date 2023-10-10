@@ -13,7 +13,7 @@ class GitRepository(models.Model):
     URL = models.URLField(
         verbose_name=_("URL for the repository"),
         help_text=_("https://github.com/owner-name/repository-name.git URL must be unique to this site."),
-        unique=True
+        unique=True,
     )
     secret = models.CharField(
         verbose_name=_("Secret for webhook"), max_length=255, default=partial(get_random_string, length=12)
