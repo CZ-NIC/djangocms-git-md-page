@@ -1,8 +1,10 @@
 """Models for Git plugin."""
+from functools import partial
+
 from cms.models import CMSPlugin
 from django.db import models
 from django.utils.crypto import get_random_string
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext_lazy as _
 
 
 class GitRepository(models.Model):
@@ -10,9 +12,12 @@ class GitRepository(models.Model):
 
     URL = models.URLField(
         verbose_name=_("URL for the repository"),
-        help_text=_("https://github.com/owner-name/repository-name.git"),
+        help_text=_("https://github.com/owner-name/repository-name.git URL must be unique to this site."),
+        unique=True,
     )
-    secret = models.CharField(verbose_name=_("Secret for webhook"), max_length=255, default=get_random_string)
+    secret = models.CharField(
+        verbose_name=_("Secret for webhook"), max_length=255, default=partial(get_random_string, length=12)
+    )
     branch = models.CharField(
         verbose_name=_("Source branch"),
         max_length=63,

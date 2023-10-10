@@ -11,7 +11,7 @@ DjangoCMS plugin for displaying a page with markdown in git repository.
 setup(
     install_requires=[
         # ...
-        'djangocms-git-md-page @ git+https://github.com/CZ-NIC/djangocms-git-md-page.git',
+        'djangocms-git-md-page',
     ]
 )
 ```
@@ -32,7 +32,7 @@ INSTALLED_APPS = [
 # urls.py
 urlpatterns = [
     # ...
-    url(r'^git_md_page/', include('git_md_page.urls')),
+    path('git_md_page/', include('git_md_page.urls')),
 ]
 ```
 

@@ -15,8 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
-"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 msgid "Full path to the file in the repository."
 msgstr "Celá cesta k souboru v repozitáři."
@@ -30,9 +29,6 @@ msgstr "Gitovské repozitáře"
 msgid "Others"
 msgstr "Ostatní"
 
-msgid "Repository could not be cloned (error code: {})."
-msgstr "Repozitář se nepodařilo stáhnout (error č. {})."
-
 msgid "Secret for webhook"
 msgstr "Secret pro webhook"
 
@@ -45,5 +41,5 @@ msgstr "Cílová větev je obvykle buď master, nebo main."
 msgid "URL for the repository"
 msgstr "URL repozitáře"
 
-msgid "https://github.com/owner-name/repository-name.git"
-msgstr "https://github.com/jmeno-vlastnika/jmeno-repozitar.git"
+msgid "https://github.com/owner-name/repository-name.git URL must be unique to this site."
+msgstr "https://github.com/jmeno-vlastnika/jmeno-repozitar.git URL musí být jednoznačná pro tento web."

@@ -3,7 +3,6 @@ from shutil import rmtree
 from tempfile import mkdtemp
 
 from django import forms
-from django.utils.translation import gettext as _
 from git import CommandError, Repo
 
 from git_md_page.models import GitRepository, GitTextPluginModel
