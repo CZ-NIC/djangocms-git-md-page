@@ -1,4 +1,5 @@
 """Models for Git plugin."""
+
 from functools import partial
 
 from cms.models import CMSPlugin

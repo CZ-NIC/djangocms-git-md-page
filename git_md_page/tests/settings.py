@@ -54,3 +54,5 @@ CACHES = {
         "LOCATION": "/tmp/git_md_page_cache",
     }
 }
+
+CMS_CONFIRM_VERSION4 = True

@@ -1,4 +1,5 @@
 """Forms for git related plugins."""
+
 from shutil import rmtree
 from tempfile import mkdtemp
 
