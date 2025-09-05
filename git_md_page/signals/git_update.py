@@ -1,4 +1,5 @@
 """Signals for GitRepository update."""
+
 import os
 from shutil import rmtree
 from tempfile import mkdtemp

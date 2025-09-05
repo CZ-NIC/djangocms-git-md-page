@@ -1,4 +1,5 @@
 """Unittests for views."""
+
 import hmac
 import json
 from unittest.mock import Mock, call, patch

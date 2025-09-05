@@ -1,4 +1,5 @@
 """Unittests for signals."""
+
 import os
 from tempfile import mkdtemp
 from unittest.mock import call, patch, sentinel

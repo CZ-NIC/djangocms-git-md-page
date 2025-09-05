@@ -1,4 +1,5 @@
 """Administration for git_md_page."""
+
 from django.contrib import admin
 
 from git_md_page.forms.git_plugins import GitRepositoryForm

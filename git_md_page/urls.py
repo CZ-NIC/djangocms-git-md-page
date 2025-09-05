@@ -1,4 +1,5 @@
 """Urls for git_md_page."""
+
 from django.urls import re_path
 
 from .views import git_update_endpoint

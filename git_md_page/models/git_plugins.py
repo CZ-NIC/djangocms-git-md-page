@@ -1,4 +1,5 @@
 """Models for Git plugin."""
+
 from functools import partial
 
 from cms.models import CMSPlugin
@@ -45,12 +46,12 @@ class GitTextPluginModel(CMSPlugin):
         """Understandable representation."""
         return "{}".format(self.file)
 
-    def save(self, no_signals=False, *args, **kwargs):
+    def save(self, *args, **kwargs):
         """Send a signal to fetch content."""
         from git_md_page.signals.git_update import repo_update
 
         signal_sent = kwargs.pop("signal_sent", False)
-        super().save(no_signals=no_signals, *args, **kwargs)
+        super().save(*args, **kwargs)
         if not signal_sent:
             # We are triggering a save in the signal, so do not fire again
             repo_update.send(sender=self.__class__, instance=self)

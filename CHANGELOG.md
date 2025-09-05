@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] - 2025-09-05
+
+### Changed
+
+- Upgrade to djangocms >= 3.11.
+
 ## [2.0.0] - 2023-10-10
 
 ### Fixed
@@ -43,7 +49,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2021-05-27
 
 
-[unreleased]: https://github.com/CZ-NIC/djangocms-git-md-page/compare/2.0.0...main
+[unreleased]: https://github.com/CZ-NIC/djangocms-git-md-page/compare/2.0.1...main
+[2.0.1]: https://github.com/CZ-NIC/djangocms-git-md-page/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/CZ-NIC/djangocms-git-md-page/compare/1.0.2...2.0.0
 [1.0.2]: https://github.com/CZ-NIC/djangocms-git-md-page/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/CZ-NIC/djangocms-git-md-page/compare/1.0.0...1.0.1
